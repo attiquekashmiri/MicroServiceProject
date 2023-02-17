@@ -26,7 +26,7 @@ namespace ProductService.Services.ItemsManagement
                         UPC = item.UPC,
                         SKU = item.SKU,
                         Price = item.Price,
-                        Quantity = item.Quantity,
+                        Quantity =item.Quantity >0 ? item.Quantity : 0,
                         Category = item.Category,
                         Condition = item.Condition,
                         isActive = item.isActive,
@@ -84,7 +84,7 @@ namespace ProductService.Services.ItemsManagement
                         resultitem.UPC = item.UPC;
                         resultitem.SKU = item.SKU;
                         resultitem.Price = item.Price;
-                        resultitem.Quantity = item.Quantity;
+                        resultitem.Quantity = item.Quantity > 0 ? item.Quantity : 0;
                         resultitem.Category = item.Category;
                         resultitem.Condition = item.Condition;
                         resultitem.isActive = item.isActive;
