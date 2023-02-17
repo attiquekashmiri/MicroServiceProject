@@ -12,7 +12,12 @@ namespace Common.Helpers
                 if (BaseUrl != null)
                 {
                     string date = DateTime.Now.ToString("dd-MM-yyyy");
-                    var filePath = BaseUrl + "/ApiLogs/" + date + "_Logs.txt";
+                    var directory = BaseUrl + "/ApiLogs";
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+                    var filePath = directory + "/" + date + "_Logs.txt";
 
                     if (!File.Exists(filePath))
                     {

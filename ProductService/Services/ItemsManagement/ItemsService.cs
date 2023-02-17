@@ -75,7 +75,7 @@ namespace ProductService.Services.ItemsManagement
         {
             try
             {
-                if (!string.IsNullOrEmpty(item.SKU) && item.Id>0)
+                if (!string.IsNullOrEmpty(item.SKU) && item.Id>0 && !_context.Items.Any(x=>x.SKU==item.SKU && x.Id !=item.Id))
                 {
                     var resultitem = _context.Items.Where(x => x.Id == item.Id && x.isActive== true).FirstOrDefault();
                     if (resultitem != null)
@@ -176,7 +176,7 @@ namespace ProductService.Services.ItemsManagement
             {
                 if (!string.IsNullOrEmpty(query))
                 {
-                    var result = _context.Items.Where(x=>x.SKU==query || x.UPC ==query || x.ProductName.Contains(query)).Select(item => new ItemVM()
+                    var result = _context.Items.Where(x=>x.SKU==query || x.UPC ==query || x.ProductName.ToLower().Contains(query.ToLower())).Select(item => new ItemVM()
                     {
                         Id = item.Id,
                         ProductName = item.ProductName,

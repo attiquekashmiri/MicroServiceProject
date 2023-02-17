@@ -1,4 +1,5 @@
 using EmployeeCommon.Data;
+using EmployeeService.Services.EmployeesManagement;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,10 @@ builder.Services.AddDbContext<EmployeeDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 });
+
+#region Services
+builder.Services.AddScoped<IEmployeesService, EmployeesService>();
+#endregion
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
